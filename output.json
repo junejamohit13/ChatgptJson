@@ -1,0 +1,332 @@
+{
+  "MedicinalProductDefinition": {
+    "identifier": {
+      "description": "A unique identifier assigned to the medicinal product, such as a registration number or manufacturing code. This is critical for tracking the product across different regulatory and manufacturing systems.",
+      "example": "MPD123456"
+    },
+    "name": {
+      "description": "The official name of the medicinal product, as registered or marketed. This could include dosage and form (e.g., 'Stelbat Tablets, 20mg'). It provides a clear label for the product in all manufacturing, quality control, and regulatory documents.",
+      "example": "Stelbat Tablets, 20mg"
+    },
+    "status": {
+      "description": "The regulatory status of the medicinal product. Values could include 'approved', 'under review', or 'withdrawn'. This is crucial for understanding at what stage the product is in its lifecycle, especially important for CMC filings and product tracking.",
+      "example": "approved"
+    },
+    "type": {
+      "description": "The type of the medicinal product, indicating whether it is a tablet, liquid, injectable, etc. This classification is essential for CMC as it affects manufacturing processes and control strategies.",
+      "example": "tablet"
+    },
+    "doseForm": {
+      "description": "Describes the form in which the product is administered to patients (e.g., tablet, solution, injection). This field is important for both manufacturing process control and quality testing.",
+      "example": "tablet"
+    },
+    "ingredient": {
+      "description": "A reference to the ingredients used in the medicinal product, linked to the Ingredient resource. This is key for documenting the active pharmaceutical ingredients (APIs) and excipients, both critical for regulatory approval and manufacturing.",
+      "example": {
+        "reference": "Ingredient/Stelbatolol"
+      }
+    },
+    "manufacturer": {
+      "description": "The organization responsible for the production of the medicinal product. For CMC, this is essential to track the manufacturer’s GMP compliance and production capabilities.",
+      "example": {
+        "reference": "Organization/CompanyX"
+      }
+    },
+    "crossReference": {
+      "description": "Links to related regulatory files or products that reference this product. This is useful in cases where multiple products or variations are associated with a common filing.",
+      "example": {
+        "reference": "RegulatoryFile/MPD123"
+      }
+    },
+    "description": {
+      "description": "A textual description of the medicinal product, including its intended use, formulation, and any other relevant details that might aid in CMC documentation and product characterization.",
+      "example": "Stelbat Tablets are used for the treatment of hypertension. They contain 20mg of active ingredient Stelbatolol."
+    }
+  },
+
+  "Ingredient": {
+    "identifier": {
+      "description": "A unique identifier for the ingredient, used to track the substance across different stages of production and regulatory filings. This is essential for linking ingredient information to other manufacturing documentation.",
+      "example": "ING45678"
+    },
+    "role": {
+      "description": "Indicates whether the ingredient is active, excipient, or another category. This is a critical distinction for CMC as it determines the manufacturing control and regulatory filing for the product.",
+      "example": "active"
+    },
+    "substanceCodeableConcept": {
+      "description": "The substance used as an ingredient, identified either by a code or name. This field links to standardized chemical databases like CAS numbers or chemical names, ensuring traceability of the substance throughout its lifecycle.",
+      "example": {
+        "coding": {
+          "system": "https://chem.nlm.nih.gov/chemidplus",
+          "code": "STEL123456",
+          "display": "Stelbatolol"
+        }
+      }
+    },
+    "strength": {
+      "description": "The amount or concentration of the ingredient in a specific dosage form, with units. This field is critical for both manufacturing and quality control processes, ensuring that the right amount of the ingredient is used during formulation.",
+      "example": {
+        "quantity": {
+          "value": 20,
+          "unit": "mg"
+        }
+      }
+    },
+    "manufacturer": {
+      "description": "The organization responsible for manufacturing the ingredient. This is key for tracking the source of the material and ensuring GMP compliance.",
+      "example": {
+        "reference": "Organization/IngredientManufacturer"
+      }
+    },
+    "specifiedSubstance": {
+      "description": "Additional layers of specificity, such as salt forms or chemical complexes. This helps in documenting specific variants of the ingredient that may affect solubility, stability, or bioavailability.",
+      "example": {
+        "code": {
+          "coding": {
+            "system": "https://www.ebi.ac.uk/chebi",
+            "code": "CHEBI:32131",
+            "display": "Stelbatolol Hydrochloride"
+          }
+        }
+      }
+    },
+    "substanceReference": {
+      "description": "A reference to the detailed **SubstanceDefinition** resource, which provides a full description of the chemical properties and characteristics of the ingredient.",
+      "example": {
+        "reference": "SubstanceDefinition/Stelbatolol"
+      }
+    }
+  },
+
+  "SubstanceDefinition": {
+    "identifier": {
+      "description": "A unique identifier for the substance, such as a CAS number or internal registration number. This field is key for regulatory submissions and tracking chemical substances in CMC processes.",
+      "example": "CAS:123456-78-9"
+    },
+    "status": {
+      "description": "The regulatory or development status of the substance, indicating whether it is active, withdrawn, or in development. Important for regulatory compliance and ensuring the substance is correctly documented for CMC filings.",
+      "example": "active"
+    },
+    "description": {
+      "description": "A detailed textual description of the substance, including its appearance, physical properties, and general use. This is critical for manufacturing, formulation, and quality control purposes.",
+      "example": "Stelbatolol is a white crystalline powder, soluble in water, and used as an active pharmaceutical ingredient."
+    },
+    "code": {
+      "description": "Codes that identify the substance across various systems (e.g., CAS, EINECS, INCI). This ensures traceability and standardized naming across all regulatory and manufacturing systems.",
+      "example": {
+        "coding": {
+          "system": "https://www.cas.org/",
+          "code": "123456-78-9",
+          "display": "Stelbatolol"
+        }
+      }
+    },
+    "molecularWeight": {
+      "description": "The molecular weight of the substance. Important for calculating doses and ensuring proper formulation in the manufacturing process.",
+      "example": {
+        "value": 345.5,
+        "unit": "g/mol"
+      }
+    },
+    "structure": {
+      "description": "The chemical structure of the substance, typically represented as a molecular formula or a chemical structure diagram. This is critical for understanding the substance’s properties, interactions, and stability during production.",
+      "example": "C17H21NO4"
+    },
+    "nomenclature": {
+      "description": "Names, synonyms, or trade names for the substance. This helps identify the substance across various regions and regulatory environments.",
+      "example": "Stelbatolol, Stelbat"
+    },
+    "sourceMaterial": {
+      "description": "Information about the source of the substance if it is derived from a biological or natural source. This field is essential for ensuring the source material’s compliance with regulatory standards.",
+      "example": {
+        "source": "Plant",
+        "species": "Stelbataceae"
+      }
+    },
+    "moiety": {
+      "description": "Information about any distinct chemical units within the substance, such as a salt or active part of the molecule. This is important for understanding the pharmacological properties and behavior of the substance during production and in the body.",
+      "example": "Hydrochloride"
+    }
+  },
+
+  "PlanDefinition": {
+    "identifier": {
+      "description": "A unique identifier for the manufacturing or process plan. This field is essential for tracking the plan across its lifecycle and ensuring that all regulatory documentation references the correct process.",
+      "example": "MP-PLAN-789"
+    },
+    "status": {
+      "description": "The status of the plan, which could be 'active', 'draft', or 'completed'. This is crucial for determining whether the plan is ready for execution, under review, or retired.",
+      "example": "active"
+    },
+    "title": {
+      "description": "The title of the plan, typically describing the process it governs. In CMC, this would refer to the specific manufacturing process or quality control plan for a product.",
+      "example": "Stelbat Tablet Manufacturing Process"
+    },
+        "action": [
+      {
+        "title": "Step 1: Mixing",
+        "description": "Mixing the active ingredient Stelbatolol with excipients to form a homogeneous blend. This step is critical in ensuring the uniform distribution of the active substance in the final product. The mixture is prepared in a mixer with controlled conditions of temperature and speed.",
+        "timing": {
+          "description": "Specifies the timing or duration of the action. For mixing, this could include the time duration (e.g., 'Mix for 15 minutes') or time dependency with other actions (e.g., 'Must start within 30 minutes after the previous step').",
+          "example": "15 minutes"
+        },
+        "participant": [
+          {
+            "type": "DeviceDefinition",
+            "description": "The devices used in this step, such as mixers or vessels. For CMC, these devices must meet specific GMP guidelines and operational controls, such as temperature, speed, and mixing time.",
+            "reference": {
+              "device": "DeviceDefinition/Mixer"
+            }
+          }
+        ],
+        "input": {
+          "description": "The input materials required for this step, which could be raw substances, excipients, or intermediate products from previous steps. For CMC, ensuring that the right substances are used with correct batch identification is critical.",
+          "reference": {
+            "substance": "SubstanceDefinition/Stelbatolol"
+          }
+        },
+        "output": {
+          "description": "The output generated by this action, which in this case would be the homogeneously mixed intermediate product. Tracking these outputs is essential for batch control and quality assessment in the CMC process.",
+          "reference": {
+            "substance": "SubstanceDefinition/IntermediateBlend"
+          }
+        }
+      },
+      {
+        "title": "Step 2: Drying",
+        "description": "Drying the intermediate blend in a controlled environment to achieve the required moisture content. This step is crucial for ensuring product stability and flowability before tableting.",
+        "timing": {
+          "description": "Specifies the time required for drying. This depends on the equipment used and the characteristics of the intermediate blend (e.g., drying for 4 hours at 60°C).",
+          "example": "4 hours"
+        },
+        "participant": [
+          {
+            "type": "DeviceDefinition",
+            "description": "The device used in this step is a dryer, which must be calibrated to control temperature, humidity, and airflow according to GMP requirements. The device plays a critical role in maintaining the quality of the product.",
+            "reference": {
+              "device": "DeviceDefinition/Dryer"
+            }
+          }
+        ],
+        "input": {
+          "description": "The input for this step is the intermediate product from the previous mixing stage. Ensuring the correct intermediate is used is critical for maintaining product consistency and quality.",
+          "reference": {
+            "substance": "SubstanceDefinition/IntermediateBlend"
+          }
+        },
+        "output": {
+          "description": "The dried intermediate product, which will be used in subsequent steps such as compression or tableting. It is essential that this output meets predefined quality criteria, such as moisture content and particle size distribution.",
+          "reference": {
+            "substance": "SubstanceDefinition/DriedBlend"
+          }
+        }
+      }
+    ]
+  },
+
+  "DeviceDefinition": {
+    "identifier": {
+      "description": "A unique identifier for the device, such as a serial number, registration ID, or asset tag. This is important for tracking the device across different processes, maintenance logs, and quality control systems.",
+      "example": "DEV12345"
+    },
+    "type": {
+      "description": "Specifies the type of device being used in the process (e.g., mixer, dryer, vessel). This classification is crucial for both CMC and GMP compliance, ensuring that the correct equipment is being used for the correct process step.",
+      "example": "Mixer"
+    },
+    "manufacturer": {
+      "description": "The organization responsible for producing the device. Ensures traceability of the device's manufacturing, which is important for maintenance, audits, and regulatory inspections.",
+      "example": {
+        "reference": "Organization/DeviceManufacturer"
+      }
+    },
+    "status": {
+      "description": "Indicates whether the device is active, retired, or decommissioned. This is important for ensuring that only valid devices are used in manufacturing processes, which is critical for quality control and regulatory compliance.",
+      "example": "active"
+    },
+    "safety": {
+      "description": "Information about any safety features or warnings associated with the device. In CMC, this is critical for ensuring operator safety and maintaining product quality during manufacturing.",
+      "example": "Ensure device operates under 50°C to avoid overheating."
+    },
+    "property": {
+      "description": "Lists the specific properties of the device, such as vessel capacity, temperature control, speed settings, etc. These parameters are essential for maintaining process control in a GMP-compliant environment.",
+      "example": [
+        {
+          "type": "Temperature Control",
+          "value": "Range: 20°C to 60°C"
+        },
+        {
+          "type": "Capacity",
+          "value": "100 liters"
+        }
+      ]
+    },
+    "version": {
+      "description": "Specifies the version or model number of the device, which is important for maintenance records and device audits.",
+      "example": "Model X2000"
+    },
+    "description": {
+      "description": "A general description of the device, including its intended use in the manufacturing process. This helps provide context for its role in the CMC process, especially for auditors and regulatory submissions.",
+      "example": "A large industrial mixer used for blending pharmaceutical ingredients."
+    }
+  },
+
+  "SubstanceDefinition - IntermediateBlend": {
+    "identifier": {
+      "description": "A unique identifier for the intermediate substance, typically generated during the manufacturing process. This is essential for ensuring traceability throughout the process.",
+      "example": "INT12345"
+    },
+    "status": {
+      "description": "Indicates the status of the intermediate substance (e.g., 'in process', 'ready for next step'). This helps track the progression of the manufacturing process in real time.",
+      "example": "in process"
+    },
+    "description": {
+      "description": "A detailed description of the intermediate blend. This includes the composition and physical properties of the blend, which are critical for the next stages of manufacturing.",
+      "example": "A homogeneous blend of Stelbatolol and excipients, ready for drying."
+    },
+    "moiety": {
+      "description": "Information about the molecular components of the intermediate blend. This is especially important in CMC for understanding how the intermediate will behave in subsequent steps (e.g., stability during drying).",
+      "example": "Stelbatolol with a filler and binder"
+    },
+    "molecularWeight": {
+      "description": "The molecular weight of the active substance in the blend, which is crucial for calculating the correct dosages in the final product.",
+      "example": "345.5 g/mol"
+    },
+    "sourceMaterial": {
+      "description": "If the intermediate is derived from natural sources or biological organisms, this field documents the original source. This is important for traceability and regulatory compliance.",
+      "example": "No biological source, synthetic origin"
+    }
+  },
+
+  "SubstanceDefinition - DriedBlend": {
+    "identifier": {
+      "description": "A unique identifier for the dried intermediate substance, which will be used in subsequent processing steps. This ensures traceability and batch control.",
+      "example": "DRY12345"
+    },
+    "status": {
+      "description": "The status of the dried blend, which could indicate that it is ready for tableting or compression. This status helps track the flow of the product through the manufacturing process.",
+      "example": "ready"
+    },
+    "description": {
+      "description": "A detailed description of the dried blend, including its moisture content, particle size distribution, and other relevant characteristics that are critical for the final product's quality.",
+      "example": "Dried Stelbatolol blend with excipients, ready for compression."
+    },
+    "moiety": {
+      "description": "Molecular components or critical excipients in the dried blend. Understanding these components is crucial for ensuring the blend behaves as expected during tableting or encapsulation.",
+      "example": "Stelbatolol, binder, filler"
+    },
+    "property": {
+      "description": "Key properties such as moisture content, flowability, or particle size that need to be monitored in the dried intermediate. This is critical for quality control and ensuring product uniformity.",
+      "example": [
+        {
+          "type": "Moisture Content",
+          "value": "Less than 2%"
+        },
+        {
+          "type": "Particle Size",
+          "value": "100-200 microns"
+        }
+      ]
+    }
+  }
+}
+
